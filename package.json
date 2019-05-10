@@ -10,7 +10,8 @@
   "author": "Eric Härtel",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^5.0.0"
+    "electron": "^5.0.0",
+    "electron-mocha": "^8.0.1"
   },
   "dependencies": {
     "expect.js": "^0.3.1"
