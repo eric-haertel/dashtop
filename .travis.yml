@@ -1,8 +1,29 @@
+language: node_js
+node_js:
+  - stable
+  - 10
+
 addons:
   apt:
     packages:
       - xvfb
 
+before_install:
+  - if [[ $TRAVIS_OS_NAME = "linux" ]]; then
+    export DISPLAY=:99.0;
+    Xvfb :99 -ac -screen 0 1024x768x24 > /dev/null 2>&1 &
+    fi
+  - if [[ -n $ELECTRON_VERSION ]]; then
+    npm install electron@$ELECTRON_VERSION;
+    fi
+
 install:
-  - export DISPLAY=':99.0'
+  - npm install --no-progress
+  - $(npm bin)/electron --version  - export DISPLAY=':99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+
+script:
+  - npm test
+
+notifications:
+  email: false
